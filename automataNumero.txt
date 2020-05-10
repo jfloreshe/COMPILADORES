@@ -1,0 +1,7 @@
+digito{0123456789\}signo{-\}punto{.\}fdc{\0\};
+1,2,3,4,5;
+1(digito,3),1(signo,2),1(punto,4),1(fdc,error),
+2(digito,3),2(signo,error),2(punto,4),2(fdc,error),
+3(digito,3),3(signo,error),3(punto,4),3(fdc,aceptar),
+4(digito,5),4(signo,error),4(punto,error),4(fdc,error),
+5(digito,5),5(signo,error),5(punto,error),5(fdc,aceptar);
