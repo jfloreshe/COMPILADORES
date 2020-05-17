@@ -45,8 +45,10 @@ bool es_identificador(string buffer){
 			entrada = digito;
 		else if(es_letra(simbolo))
 			entrada = letra;
-		else if(simbolo == '\0')
+		else if(simbolo == '\0'){
+			std::cout<<"findecadena\n";
 			entrada = FDC;
+		}
 		estado = tabla[estado][entrada];
 		if (estado == ERROR)
 			return false;

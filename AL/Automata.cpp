@@ -300,3 +300,4 @@ Automata::~Automata(){
 	for(auto o:estados)
 		delete o;
 }
+

@@ -1,5 +1,0 @@
-letra{abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_\}digito{0123456789\}fdc{\0\};
-1,2,3;
-1(digito,2),1(letra,3),1(fdc,error),
-2(digito,error),2(letra,error),2(fdc,error),
-3(digito,3),3(letra,3),3(fdc,aceptar);
