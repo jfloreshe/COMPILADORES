@@ -8,6 +8,7 @@
 
 
 enum Token{ 
+		TKN_UNDEFINED = -1,
 		TKN_OPMAS = '+',TKN_OPMENOS = '-',TKN_OPMUL = '*',TKN_OPDIV = '/',
 		TKN_PARI = '(',TKN_PARD = ')',TKN_LLAI = '{',TKN_LLAD = '}',
 		TKN_COI = '[',TKN_COD = ']',

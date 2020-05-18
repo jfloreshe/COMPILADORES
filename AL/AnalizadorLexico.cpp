@@ -73,6 +73,7 @@ Token AnalizadorLexico::es_palabra_reservada(){
 void AnalizadorLexico::mostrar(){
 	for(auto cl: bufferComponenteLexico){
 		switch(cl -> token){
+			case TKN_UNDEFINED: printf("token = UNDEFINED[%s]\n", cl -> lexema); break;
 			case TKN_OPMAS: printf("token = OPMAS[%s]\n",cl -> lexema); break;
 			case TKN_OPMENOS: printf("token = OPMENOS[%s]\n",cl -> lexema); break;
 			case TKN_OPMUL: printf("token = OPMUL[%s]\n",cl -> lexema); break;
@@ -121,7 +122,7 @@ void AnalizadorLexico::scanner(std::string path){
 	Token cToken;
 	file >> std::skipws;
 	ComponenteLexico* tempCL;
-	while(file.is_open()){ 
+	while( file.peek() != EOF){ 
 		file>>characterRead;
 		
 		if(es_letra(characterRead)){//Reconoce si es identificador, palabra reservada
@@ -248,16 +249,12 @@ void AnalizadorLexico::scanner(std::string path){
 				}
 			}
 		}
-		else if(!es_digito(characterRead) && !es_letra(characterRead) && !es_simbolo_conocido(characterRead)){
-			if(file.eof()){
-				file.close();
-				break;
-			}
-			continue;
+		else if(!es_digito(characterRead) && !es_letra(characterRead) && !es_simbolo_conocido(characterRead) ){
+			//TODO otros elementos
 		}
-
-
 		mostrar();
+		
 	}
+	file.close();
 }
 
