@@ -36,7 +36,8 @@ bool AnalizadorLexico::es_simbolo_conocido(char c){
 
 }
 Token AnalizadorLexico::es_palabra_reservada(){
-	std::string identificador = lexema;
+	std::string identificador;
+	identificador.assign(lexema);
 	Token t = Token::TKN_IDENTIFICADOR;
 	if(identificador.compare("if") == 0)
 		t = Token::TKN_IF;
@@ -70,66 +71,77 @@ Token AnalizadorLexico::es_palabra_reservada(){
 	return t;
 }
 void AnalizadorLexico::mostrar(){
-	std::cout<<"hi";
-	for(auto par: bufferLexemas){
-		switch(par.second){
-			case TKN_OPMAS: printf("token = OPMAS[%s]\n",par.first); break;
-			case TKN_OPMENOS: printf("token = OPMENOS[%s]\n",par.first); break;
-			case TKN_OPMUL: printf("token = OPMUL[%s]\n",par.first); break;
-			case TKN_OPDIV: printf("token = OPDIV[%s]\n",par.first); break;
-			case TKN_PARI: printf("token = PARI[%s]\n",par.first); break;
-			case TKN_PARD: printf("token = PARD[%s]\n",par.first); break;
-			case TKN_LLAI: printf("token = LLAI[%s]\n",par.first); break;
-			case TKN_LLAD: printf("token = LLAD[%s]\n",par.first); break;
-			case TKN_COI: printf("token = COI[%s]\n",par.first); break;
-			case TKN_COD: printf("token = COD[%s]\n",par.first); break;
-			case TKN_COMA: printf("token = COMA[%s]\n",par.first); break;
-			case TKN_PUNTOYCOMA: printf("token = PUNTOYCOMA[%s]\n",par.first); break;
-			case TKN_COMPMAYOR: printf("token = COMPMAYOR[%s]\n",par.first); break;
-			case TKN_COMPMENOR: printf("token = COMPMENOR[%s]\n",par.first); break;
-			case TKN_ASIG: printf("token = ASIG[%s]\n",par.first); break;
-			case TKN_NEGACION: printf("token = NEGACION[%s]\n",par.first); break;
-			case TKN_IDENTIFICADOR: printf("token = IDENTIFICADOR[%s]\n",par.first); break;
-			case TKN_NUMERO: printf("token = NUMERO[%s]\n",par.first); break;
-			case TKN_IF: printf("token = IF[%s]\n",par.first); break;
-			case TKN_ELSE: printf("token = ELSE[%s]\n",par.first); break;
-			case TKN_WHILE: printf("token = WHILE[%s]\n",par.first); break;
-			case TKN_FOR: printf("token = FOR[%s]\n",par.first); break;
-			case TKN_SWITCH: printf("token = SWITCH[%s]\n",par.first); break;
-			case TKN_CASE: printf("token = CASE[%s]\n",par.first); break;
-			case TKN_BREAK: printf("token = BREAK[%s]\n",par.first); break;
-			case TKN_CONTINUE: printf("token = CONTINUE[%s]\n",par.first); break;
-			case TKN_BOOL: printf("token = BOOL[%s]\n",par.first); break;
-			case TKN_INT: printf("token = INT[%s]\n",par.first); break;
-			case TKN_FLOAT: printf("token = FLOAT[%s]\n",par.first); break;
-			case TKN_CHAR: printf("token = CHAR[%s]\n",par.first); break;
-			case TKN_VOID: printf("token = VOID[%s]\n",par.first); break;
-			case TKN_RETURN: printf("token = RETURN[%s]\n",par.first); break;
-			case TKN_COMPMAYORIGUAL: printf("token = COMPMAYORIGUAL[%s]\n",par.first); break;
-			case TKN_COMPMENORIGUAL: printf("token = COMPMENORIGUAL[%s]\n",par.first); break;
-			case TKN_DIFERENTE: printf("token = DIFERENTE[%s]\n",par.first); break;
-			case TKN_COMPIGUAL: printf("token = COMPIGUAL[%s]\n",par.first); break;
+	for(auto cl: bufferComponenteLexico){
+		switch(cl -> token){
+			case TKN_OPMAS: printf("token = OPMAS[%s]\n",cl -> lexema); break;
+			case TKN_OPMENOS: printf("token = OPMENOS[%s]\n",cl -> lexema); break;
+			case TKN_OPMUL: printf("token = OPMUL[%s]\n",cl -> lexema); break;
+			case TKN_OPDIV: printf("token = OPDIV[%s]\n",cl -> lexema); break;
+			case TKN_PARI: printf("token = PARI[%s]\n",cl -> lexema); break;
+			case TKN_PARD: printf("token = PARD[%s]\n",cl -> lexema); break;
+			case TKN_LLAI: printf("token = LLAI[%s]\n",cl -> lexema); break;
+			case TKN_LLAD: printf("token = LLAD[%s]\n",cl -> lexema); break;
+			case TKN_COI: printf("token = COI[%s]\n",cl -> lexema); break;
+			case TKN_COD: printf("token = COD[%s]\n",cl -> lexema); break;
+			case TKN_COMA: printf("token = COMA[%s]\n",cl -> lexema); break;
+			case TKN_PUNTOYCOMA: printf("token = PUNTOYCOMA[%s]\n",cl -> lexema); break;
+			case TKN_COMPMAYOR: printf("token = COMPMAYOR[%s]\n",cl -> lexema); break;
+			case TKN_COMPMENOR: printf("token = COMPMENOR[%s]\n",cl -> lexema); break;
+			case TKN_ASIG: printf("token = ASIG[%s]\n",cl -> lexema); break;
+			case TKN_NEGACION: printf("token = NEGACION[%s]\n",cl -> lexema); break;
+			case TKN_IDENTIFICADOR: printf("token = IDENTIFICADOR[%s]\n",cl -> lexema); break;
+			case TKN_NUMERO: printf("token = NUMERO[%s]\n",cl -> lexema); break;
+			case TKN_IF: printf("token = IF[%s]\n",cl -> lexema); break;
+			case TKN_ELSE: printf("token = ELSE[%s]\n",cl -> lexema); break;
+			case TKN_WHILE: printf("token = WHILE[%s]\n",cl -> lexema); break;
+			case TKN_FOR: printf("token = FOR[%s]\n",cl -> lexema); break;
+			case TKN_SWITCH: printf("token = SWITCH[%s]\n",cl -> lexema); break;
+			case TKN_CASE: printf("token = CASE[%s]\n",cl -> lexema); break;
+			case TKN_BREAK: printf("token = BREAK[%s]\n",cl -> lexema); break;
+			case TKN_CONTINUE: printf("token = CONTINUE[%s]\n",cl -> lexema); break;
+			case TKN_BOOL: printf("token = BOOL[%s]\n",cl -> lexema); break;
+			case TKN_INT: printf("token = INT[%s]\n",cl -> lexema); break;
+			case TKN_FLOAT: printf("token = FLOAT[%s]\n",cl -> lexema); break;
+			case TKN_CHAR: printf("token = CHAR[%s]\n",cl -> lexema); break;
+			case TKN_VOID: printf("token = VOID[%s]\n",cl -> lexema); break;
+			case TKN_RETURN: printf("token = RETURN[%s]\n",cl -> lexema); break;
+			case TKN_COMPMAYORIGUAL: printf("token = COMPMAYORIGUAL[%s]\n",cl -> lexema); break;
+			case TKN_COMPMENORIGUAL: printf("token = COMPMENORIGUAL[%s]\n",cl -> lexema); break;
+			case TKN_DIFERENTE: printf("token = DIFERENTE[%s]\n",cl -> lexema); break;
+			case TKN_COMPIGUAL: printf("token = COMPIGUAL[%s]\n",cl -> lexema); break;
 		}
+		delete cl;
 	}
-	bufferLexemas.clear();
+	bufferComponenteLexico.clear();
 }
-void AnalizadorLexico::scanner(std::ifstream& file){
+void AnalizadorLexico::scanner(std::string path){
+	std::ifstream file{path,std::ios::binary};
 	char characterRead;
 	int i;
 	Token cToken;
 	file >> std::skipws;
-	std::cout<<"120";
-	while(file >> characterRead){ 
+	ComponenteLexico* tempCL;
+	while(file.is_open()){ 
+		file>>characterRead;
+		
 		if(es_letra(characterRead)){//Reconoce si es identificador, palabra reservada
 			i = 0;
+			file >> std::noskipws;
 			do{
 				lexema[i++] = characterRead;
 				file >> characterRead;
 			}while( es_digito(characterRead) || es_letra(characterRead) || characterRead == '_');
-			lexema[i] = 0;
-			file.putback(characterRead);
-			cToken = es_palabra_reservada();
-			bufferLexemas.push_back( std::make_pair(lexema,cToken));
+			lexema[i] = '\0';
+			if(characterRead != ' ' && characterRead != '\n' && characterRead != '\t'){
+				file.putback(characterRead);
+				cToken = es_palabra_reservada();
+				bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
+			}
+			else if(characterRead == ' ' || characterRead == '\n' || characterRead == '\t'){
+				file>>std::skipws;
+				cToken = es_palabra_reservada();
+				bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
+			}
 		}
 		else if(es_digito(characterRead)){
 			cToken = TKN_NUMERO;
@@ -145,70 +157,69 @@ void AnalizadorLexico::scanner(std::ifstream& file){
 				}while( es_digito(characterRead));
 				lexema[i++] = '0';
 			}
-			lexema[i] = 0;
+			lexema[i] = '\0';
 			file.putback(characterRead);
-			bufferLexemas.push_back( std::make_pair(lexema, cToken));
+			bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
 		}
 		else if(es_simbolo_conocido(characterRead)){
 			i = 0;
 			lexema[i++] = characterRead;
 			if(characterRead == '+' || characterRead == '-' || characterRead == '*' || characterRead == '(' || characterRead == ')' || characterRead == ',' || characterRead == ';' || characterRead == '{' || characterRead == '}' || characterRead == '[' || characterRead == ']' ){
-				lexema[i] = 0;
+				lexema[i] = '\0';
 				cToken = static_cast<Token>(lexema[0]);//TODO cambiarlo de type a Token si da error
-				bufferLexemas.push_back( std::make_pair(lexema, cToken));
-				i = 0;
+				bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
 			}
 			else if(characterRead == '<'){
 				file >> characterRead;
 				if(characterRead == '='){
-					lexema[0] = '<'; lexema[1] = '='; lexema[2] = 0;
+					lexema[0] = '<'; lexema[1] = '='; lexema[2] = '\0';
 					cToken = TKN_COMPMENORIGUAL;
 				}
 				else{
 					file.putback(characterRead);
-					lexema[0] = '<'; lexema[1] = 0;
+					lexema[0] = '<'; lexema[1] = '\0';
 					cToken = static_cast<Token>(lexema[0]);//ver104
 				}
-				bufferLexemas.push_back( std::make_pair(lexema, cToken));
+				bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
 			}
 			else if(characterRead == '>'){
 				file >> characterRead;
 				if(characterRead == '='){
-					lexema[0] = '>'; lexema[1] = '='; lexema[2] = 0;
+					lexema[0] = '>'; lexema[1] = '='; lexema[2] = '\0';
 					cToken = TKN_COMPMAYORIGUAL;
 				}
 				else{
 					file.putback(characterRead);
-					lexema[0] = '>'; lexema[1] = 0;
+					lexema[0] = '>'; lexema[1] = '\0';
 					cToken = static_cast<Token>(lexema[0]);//ver104
 				}
-				bufferLexemas.push_back( std::make_pair(lexema, cToken));
+				bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
 			}
 			else if(characterRead == '='){
 				file >> characterRead;
 				if(characterRead == '='){
-					lexema[0] = '='; lexema[1] = '='; lexema[2] = 0;
+					lexema[0] = '='; lexema[1] = '='; lexema[2] = '\0';
 					cToken = TKN_COMPIGUAL;
 				}
 				else{
 					file.putback(characterRead);
-					lexema[0] = '='; lexema[1] = 0;//TKN_ASIGNACION
+					lexema[0] = '='; lexema[1] = '\0';//TKN_ASIGNACION
 					cToken = static_cast<Token>(lexema[0]);//ver104
 				}
-				bufferLexemas.push_back( std::make_pair(lexema, cToken));
+				bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
 			}
 			else if(characterRead == '!'){
 				file >> characterRead;
 				if(characterRead == '='){
-					lexema[0] = '!'; lexema[1] = '='; lexema[2] = 0;
+					lexema[0] = '!'; lexema[1] = '='; lexema[2] = '\0';
 					cToken = TKN_DIFERENTE;
 				}
 				else{
 					file.putback(characterRead);
-					lexema[0] = '!'; lexema[1] = 0;//tkn_negacion
+					lexema[0] = '!'; lexema[1] = '\0';//tkn_negacion
 					cToken = static_cast<Token>(lexema[0]);//ver104
 				}
-				bufferLexemas.push_back( std::make_pair(lexema, cToken));
+				bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
 			}
 			else if(characterRead == '/'){
 				file >> characterRead;
@@ -231,14 +242,22 @@ void AnalizadorLexico::scanner(std::ifstream& file){
 				}
 				else if(characterRead != '/' && characterRead != '*'){
 					file.putback(characterRead);
-					lexema[0] = '/'; lexema[1] = 0;
+					lexema[0] = '/'; lexema[1] = '\0';
 					cToken = static_cast<Token>(lexema[0]);//ver104
-					bufferLexemas.push_back( std::make_pair(lexema, cToken));
+					bufferComponenteLexico.push_back( new ComponenteLexico(lexema,cToken));
 				}
 			}
 		}
+		else if(!es_digito(characterRead) && !es_letra(characterRead) && !es_simbolo_conocido(characterRead)){
+			if(file.eof()){
+				file.close();
+				break;
+			}
+			continue;
+		}
+
+
 		mostrar();
 	}
 }
-
 

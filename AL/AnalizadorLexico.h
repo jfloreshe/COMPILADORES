@@ -18,16 +18,30 @@ enum Token{
 		TKN_BOOL,TKN_INT,TKN_FLOAT,TKN_CHAR,
 		TKN_VOID,TKN_RETURN,
 		TKN_COMPMAYORIGUAL, TKN_COMPMENORIGUAL, TKN_DIFERENTE, TKN_COMPIGUAL};
+
+struct ComponenteLexico{
+	char lexema[256];
+	Token token;
+	ComponenteLexico(std::string _lexema,Token _ctoken):token{_ctoken}{
+		int i = 0;
+		while(_lexema[i] != '\0'){
+			lexema[i] = _lexema[i];
+			i++;
+		}
+		lexema[i] = '\0';	
+	}
+	ComponenteLexico(){}
+};
 class AnalizadorLexico{
 	private:
-		std::vector< std::pair<std::string, Token> > bufferLexemas;
+		std::vector<ComponenteLexico* > bufferComponenteLexico;
 		bool es_digito(char);
 		bool es_letra(char);//TODO EN el identificador revisar caso _
 		bool es_simbolo_conocido(char);
 		Token es_palabra_reservada();
 		char lexema[256];
 	public:
-		void scanner(std::ifstream& );
+		void scanner(std::string );
 		void mostrar();
 
 };

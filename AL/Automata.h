@@ -48,7 +48,4 @@ class Automata{
 		void mostrar_simbolos_permitidos()const;
 		void mostrar_automata()const;
 };
-
-
-
 #endif
