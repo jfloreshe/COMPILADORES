@@ -1,0 +1,21 @@
+#define OPERADORMAS 1
+#define OPERADORMENOS 2
+#define INT 3
+#define ELSE 4
+#define FOR 5
+#define SWITCH 6
+#define CASE 7
+#define BREAK 8
+#define CONTINUE 9
+#define PUNTOYCOMA 10
+#define LEFTPARENTESIS 11
+#define RIGHTPARENTESIS 12
+#define IDENTIFICADOR 13
+#define NUMERO 14
+#define WHILE 15
+#define COMA 16
+#define LEFTLLAVE 17
+#define RIGHTLLAVE 18
+#define LEFTCORCHETE 19
+#define RIGHTCORCHETE 20
+

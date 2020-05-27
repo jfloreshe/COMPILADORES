@@ -1,0 +1,6 @@
+hola
+//random text here
+he estado pensando mucho, estos dias han sido complicados/*
+este bloque deberia ser ignorado
+//otra linea de comentario
+asdajsdoajodjasodjaojsjo*/
